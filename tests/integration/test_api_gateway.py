@@ -14,7 +14,8 @@ class TestApiGateway(TestCase):
 
     @classmethod
     def get_stack_name(cls) -> str:
-        stack_name = os.environ.get("AWS_SAM_STACK_NAME")
+        # stack_name = os.environ.get("AWS_SAM_STACK_NAME")
+        stack_name = "sam-app"
         if not stack_name:
             raise Exception(
                 "Cannot find env var AWS_SAM_STACK_NAME. \n"
@@ -42,8 +43,10 @@ class TestApiGateway(TestCase):
         stacks = response["Stacks"]
 
         stack_outputs = stacks[0]["Outputs"]
-        api_outputs = [output for output in stack_outputs if output["OutputKey"] == "HelloWorldApi"]
-        self.assertTrue(api_outputs, f"Cannot find output HelloWorldApi in stack {stack_name}")
+        api_outputs = [
+            output for output in stack_outputs if output["OutputKey"] == "HelloWorldApi"]
+        self.assertTrue(
+            api_outputs, f"Cannot find output HelloWorldApi in stack {stack_name}")
 
         self.api_endpoint = api_outputs[0]["OutputValue"]
 
@@ -52,4 +55,4 @@ class TestApiGateway(TestCase):
         Call the API Gateway endpoint and check the response
         """
         response = requests.get(self.api_endpoint)
-        self.assertDictEqual(response.json(), {"message": "hello world"})
+        self.assertDictEqual(response.json(), {"message": "hello world v1"})
