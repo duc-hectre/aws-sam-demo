@@ -32,7 +32,7 @@ Parameters:
     Default: "GitHub"
   FullRepositoryId:
     Type: String
-    Default: "https://github.com/duc-hectre/aws-sam-demo.git"
+    Default: "duc-hectre/aws-sam-demo"
   MainGitBranch:
     Type: String
     Default: "main"
@@ -65,7 +65,7 @@ Parameters:
     Default: "ap-southeast-1"
   ProdStackName:
     Type: String
-    Default: "sam-app-state-2"
+    Default: "sam-app"
   ProdPipelineExecutionRole:
     Type: String
     Default: "arn:aws:iam::983670951732:role/aws-sam-cli-managed-sam-demo-PipelineExecutionRole-1WIAMHN2XRBNK"
