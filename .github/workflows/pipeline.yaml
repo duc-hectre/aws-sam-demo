@@ -22,7 +22,7 @@ env:
   # testing "sam package" and "sam deploy" commands.
   # TESTING_IMAGE_REPOSITORY = '0123456789.dkr.ecr.region.amazonaws.com/repository-name'
   TESTING_REGION: ap-southeast-1
-  PROD_STACK_NAME: sam-demo-app
+  PROD_STACK_NAME: sam-app
   PROD_PIPELINE_EXECUTION_ROLE: arn:aws:iam::983670951732:role/aws-sam-cli-managed-sam-demo-PipelineExecutionRole-1WIAMHN2XRBNK
   PROD_CLOUDFORMATION_EXECUTION_ROLE: arn:aws:iam::983670951732:role/aws-sam-cli-managed-sam-d-CloudFormationExecutionR-101MBBPTD55W7
   PROD_ARTIFACTS_BUCKET: aws-sam-cli-managed-sam-demo-stag-artifactsbucket-1f94oa32kv1oa
@@ -99,6 +99,7 @@ jobs:
             --capabilities CAPABILITY_IAM \
             --region ${TESTING_REGION} \
             --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
+            --no-confirm-changeset \
             --no-fail-on-empty-changeset \
             --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
 
@@ -190,6 +191,7 @@ jobs:
             --capabilities CAPABILITY_IAM \
             --region ${TESTING_REGION} \
             --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
+            --no-confirm-changeset \
             --no-fail-on-empty-changeset \
             --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
 
@@ -235,5 +237,6 @@ jobs:
             --capabilities CAPABILITY_IAM \
             --region ${PROD_REGION} \
             --s3-bucket ${PROD_ARTIFACTS_BUCKET} \
+            --no-confirm-changeset \
             --no-fail-on-empty-changeset \
             --role-arn ${PROD_CLOUDFORMATION_EXECUTION_ROLE}
